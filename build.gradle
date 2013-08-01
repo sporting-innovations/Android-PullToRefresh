@@ -1,0 +1,25 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.5.+'
+    }
+}
+
+apply plugin: 'android-library'
+
+
+android {
+    compileSdkVersion 17
+	buildToolsVersion "17.0.0"
+	
+	    sourceSets {
+        main {
+            manifest.srcFile '/android-pulltorefresh-lib/AndroidManifest.xml'
+            java.srcDirs = ['/android-pulltorefresh-lib/src']
+            res.srcDirs = ['/android-pulltorefresh-lib/res']
+        }
+    }
+}

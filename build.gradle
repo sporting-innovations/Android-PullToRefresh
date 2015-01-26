@@ -1,25 +1,28 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-
-    dependencies {
-        classpath 'com.android.tools.build:gradle:0.5.+'
-    }
-}
-
-apply plugin: 'android-library'
+apply plugin: 'com.android.library'
 
 
 android {
-    compileSdkVersion 17
-	buildToolsVersion "17.0.0"
+	defaultPublishConfig "$type"
+	compileSdkVersion project.compileSdkVersion
+	buildToolsVersion project.buildToolsVersion
+
+	defaultConfig {
+		minSdkVersion project.minSdkVersion
+		targetSdkVersion project.targetSdkVersion
+	}
 	
-	    sourceSets {
-        main {
-            manifest.srcFile '/android-pulltorefresh-lib/AndroidManifest.xml'
-            java.srcDirs = ['/android-pulltorefresh-lib/src']
-            res.srcDirs = ['/android-pulltorefresh-lib/res']
-        }
-    }
+	lintOptions {
+		checkAllWarnings true
+		disable 'InvalidPackage', 'MissingTranslation', 'LocaleFolder', 'AddJavascriptInterface', 'FloatMath', 'UnusedIds', 'SelectableText', 'ViewConstructor',
+				'ContentDescription', 'RtlHardcoded', 'IconDensities'
+		fatal 'StopShip'
+	}
+	
+	sourceSets {
+		main {
+			manifest.srcFile 'android-pulltorefresh-lib/AndroidManifest.xml'
+			java.srcDirs = ['android-pulltorefresh-lib/src']
+			res.srcDirs = ['android-pulltorefresh-lib/res']
+		}
+	}
 }
